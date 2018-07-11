@@ -43,6 +43,10 @@ class LinkedList {
         this.size++;
     }
 
+    insertAtIndex(element, index) {
+
+    }
+
     deleteFromEnd() {
         let current, prev;
         if (this.head == null) {
@@ -72,9 +76,23 @@ class LinkedList {
         this.size--;
     }
 
+    findMiddleElement() {
+        let current = this.head;
+        let slow_ptr = this.head;
+        let fast_ptr = this.head;
+
+        if (current) {
+            while (fast_ptr != null && fast_ptr.next != null) {
+                fast_ptr = fast_ptr.next.next;
+                slow_ptr = slow_ptr.next;
+            }
+            return slow_ptr.data;
+        }
+    }
+
     printList() {
-        var curr = this.head;
-        var str = "";
+        let curr = this.head;
+        let str = "";
         while (curr) {
             str += curr.data + " ";
             curr = curr.next;
@@ -85,7 +103,7 @@ class LinkedList {
 }
 
 // creating an object for the Linkedlist class
-var ll = new LinkedList();
+let ll = new LinkedList();
 
 ll.insertAtEnd(10);
 ll.insertAtEnd(20);
@@ -96,3 +114,4 @@ ll.insertAtFront(50);
 ll.deleteFromFront();
 
 console.log("Contents of linked list:", ll.printList());
+console.log("Middle element of linked list:", ll.findMiddleElement());
